@@ -13,20 +13,29 @@ namespace ProvaPub.Services
             _ctx = ctx;
         }
 
-        public CustomerList ListCustomers(int page)
+        public Lists ListCustomers(int page)
         {
-            return new CustomerList() { HasNext = false, TotalCount = 10, Customers = _ctx.Customers.ToList() };
+            return new Lists() { HasNext = false, TotalCount = 10, Customers = _ctx.Customers.ToList() };
         }
 
         public async Task<bool> CanPurchase(int customerId, decimal purchaseValue)
         {
-            if (customerId <= 0) throw new ArgumentOutOfRangeException(nameof(customerId));
+            if (customerId <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(customerId));
+            }
 
-            if (purchaseValue <= 0) throw new ArgumentOutOfRangeException(nameof(purchaseValue));
+            if (purchaseValue <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(purchaseValue));
+            }
 
             //Business Rule: Non registered Customers cannot purchase
             var customer = await _ctx.Customers.FindAsync(customerId);
-            if (customer == null) throw new InvalidOperationException($"Customer Id {customerId} does not exists");
+            if (customer == null)
+            {
+                throw new InvalidOperationException($"Customer Id {customerId} does not exists");
+            }
 
             //Business Rule: A customer can purchase only a single time per month
             var baseDate = DateTime.UtcNow.AddMonths(-1);

@@ -55,7 +55,7 @@ Dê uma passeada pelo projeto e note que ele tem alguns probleminhas de arquitetu
 ## Seu trabalho
 Certo, tudo configurado e rodando. Agora vamos explicar o que você precisa fazer.
 
-### Parte1Controller
+### Parte1Controller 
 Esse controller foi criado para gerar uma API que sempre retorna um número aleatório. 
 Você pode vê-lo funcionando ao rodar o projeto e na página do Swagger, clique em Parte 1 > Try it Out > Execute.
 
